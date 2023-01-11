@@ -4,19 +4,20 @@
 //start coding by removing this file and adding yours ;)
 @import "navBar";
 @import "home";
+@import "form";
 
 h1 {
     text-align: center;
     color: white;
-    font: 500 70px Lato;
-    text-shadow: #474747 3px 5px 2px;
+    font: 700 70px Lato;
+    text-shadow: #474747 3px 4px 2px;
 }
 
 h2 {
     text-align: center;
     color: white;
-    font: 300 40px Lato;
-    text-shadow: #474747 3px 5px 2px;
+    font: 600 40px Lato;
+    text-shadow: #474747 3px 4px 2px;
 }
 
 .title-home {
