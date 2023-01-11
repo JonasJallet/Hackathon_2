@@ -34,6 +34,9 @@ class Customer
     #[ORM\Column(length: 255)]
     private ?string $city = null;
 
+    #[ORM\OneToOne(inversedBy: 'customer', cascade: ['persist', 'remove'])]
+    private ?Vehicle $vehicle = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -119,6 +122,18 @@ class Customer
     public function setCity(string $city): self
     {
         $this->city = $city;
+
+        return $this;
+    }
+
+    public function getVehicle(): ?Vehicle
+    {
+        return $this->vehicle;
+    }
+
+    public function setVehicle(?Vehicle $vehicle): self
+    {
+        $this->vehicle = $vehicle;
 
         return $this;
     }

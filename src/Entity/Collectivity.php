@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\CollectivityRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: CollectivityRepository::class)]
@@ -27,6 +29,14 @@ class Collectivity
 
     #[ORM\Column(length: 255)]
     private ?string $city = null;
+
+    #[ORM\OneToMany(mappedBy: 'collectivity', targetEntity: Vehicle::class)]
+    private Collection $vehicle;
+
+    public function __construct()
+    {
+        $this->vehicle = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -89,6 +99,36 @@ class Collectivity
     public function setCity(string $city): self
     {
         $this->city = $city;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Vehicle>
+     */
+    public function getVehicle(): Collection
+    {
+        return $this->vehicle;
+    }
+
+    public function addVehicle(Vehicle $vehicle): self
+    {
+        if (!$this->vehicle->contains($vehicle)) {
+            $this->vehicle->add($vehicle);
+            $vehicle->setCollectivity($this);
+        }
+
+        return $this;
+    }
+
+    public function removeVehicle(Vehicle $vehicle): self
+    {
+        if ($this->vehicle->removeElement($vehicle)) {
+            // set the owning side to null (unless already changed)
+            if ($vehicle->getCollectivity() === $this) {
+                $vehicle->setCollectivity(null);
+            }
+        }
 
         return $this;
     }
