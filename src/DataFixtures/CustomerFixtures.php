@@ -2,51 +2,45 @@
 
 namespace App\DataFixtures;
 
-use App\Entity\customer;
+use App\Entity\Customer;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
-class customerFixtures extends Fixture implements DependentFixtureInterface
+class CustomerFixtures extends Fixture implements DependentFixtureInterface
 {
     public function load(ObjectManager $manager): void
     {
         $customers = [
             [
                 'user' => 'user_1',
-                'firstname' => 'Thomas',
-                'lastname' => 'Besson',
-                'phone' => '0623456589',
+                'firstname' => 'Timmy',
+                'lastname' => 'Burch',
+                'phone' => 623456589,
                 'address' => 'Chemin de la tuilerie',
-                'zipcode' => '49000',
-                'city' => 'Angers',
+                'zipcode' => 69150,
+                'city' => 'Décines-Charpieu',
+                'disability_card' => 137543456,
             ],
             [
                 'user' => 'user_2',
-                'firstname' => 'Marcia',
+                'firstname' => 'Chacha',
                 'lastname' => 'Baila',
-                'phone' => '0629646589',
+                'phone' => 629646589,
                 'address' => 'Avenue du non retour',
-                'zipcode' => '38200',
-                'city' => 'Tours',
+                'zipcode' => 69320,
+                'city' => 'Feyzin',
+                'disability_card' => 189543456,
             ],
             [
                 'user' => 'user_3',
-                'firstname' => 'Antoine',
+                'firstname' => 'Jeje',
                 'lastname' => 'Dupont',
-                'phone' => '0623456589',
+                'phone' => 623456589,
                 'address' => 'Ronde des roses',
-                'zipcode' => '59000',
+                'zipcode' => 69003,
                 'city' => 'Lyon',
-            ],
-            [
-                'user' => 'user_4',
-                'firstname' => 'Chacha',
-                'lastname' => 'Da Rugna',
-                'phone' => '0687656589',
-                'address' => 'Route du talent',
-                'zipcode' => '01000',
-                'city' => 'Chezpo',
+                'disability_card' => 156745685,
             ],
         ];
 
@@ -54,7 +48,7 @@ class customerFixtures extends Fixture implements DependentFixtureInterface
             $newcustomer = new Customer();
             $newcustomer->setFirstName($customer['firstname']);
             $newcustomer->setLastName($customer['lastname']);
-            $newcustomer->setDisabilityCard($customer['disabilitycard']);
+            $newcustomer->setDisabilityCard($customer['disability_card']);
             $newcustomer->setPhone($customer['phone']);
             $newcustomer->setAddress($customer['address']);
             $newcustomer->setZipcode($customer['zipcode']);
@@ -69,7 +63,6 @@ class customerFixtures extends Fixture implements DependentFixtureInterface
     {
         return [
             UserFixtures::class,
-            StackFixtures::class,
         ];
     }
 }
