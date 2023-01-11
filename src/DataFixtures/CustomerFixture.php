@@ -2,12 +2,12 @@
 
 namespace App\DataFixtures;
 
-use App\Entity\customer;
+use App\Entity\Customer;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
-class customerFixtures extends Fixture implements DependentFixtureInterface
+class CustomerFixtures extends Fixture implements DependentFixtureInterface
 {
     public function load(ObjectManager $manager): void
     {
@@ -16,28 +16,31 @@ class customerFixtures extends Fixture implements DependentFixtureInterface
                 'user' => 'user_1',
                 'firstname' => 'Timmy',
                 'lastname' => 'Burch',
-                'phone' => '0623456589',
+                'phone' => 623456589,
                 'address' => 'Chemin de la tuilerie',
-                'zipcode' => '69150',
+                'zipcode' => 69150,
                 'city' => 'Décines-Charpieu',
+                'disability_card' => 137543456,
             ],
             [
                 'user' => 'user_2',
                 'firstname' => 'Chacha',
                 'lastname' => 'Baila',
-                'phone' => '0629646589',
+                'phone' => 629646589,
                 'address' => 'Avenue du non retour',
-                'zipcode' => '69320',
+                'zipcode' => 69320,
                 'city' => 'Feyzin',
+                'disability_card' => 189543456,
             ],
             [
                 'user' => 'user_3',
                 'firstname' => 'Jeje',
                 'lastname' => 'Dupont',
-                'phone' => '0623456589',
+                'phone' => 623456589,
                 'address' => 'Ronde des roses',
-                'zipcode' => '69003',
+                'zipcode' => 69003,
                 'city' => 'Lyon',
+                'disability_card' => 156745685,
             ],
         ];
 
@@ -45,7 +48,7 @@ class customerFixtures extends Fixture implements DependentFixtureInterface
             $newcustomer = new Customer();
             $newcustomer->setFirstName($customer['firstname']);
             $newcustomer->setLastName($customer['lastname']);
-            $newcustomer->setDisabilityCard($customer['disabilitycard']);
+            $newcustomer->setDisabilityCard($customer['disability_card']);
             $newcustomer->setPhone($customer['phone']);
             $newcustomer->setAddress($customer['address']);
             $newcustomer->setZipcode($customer['zipcode']);
