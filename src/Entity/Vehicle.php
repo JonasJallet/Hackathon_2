@@ -34,6 +34,12 @@ class Vehicle
     #[ORM\Column(length: 255)]
     private ?string $picture = null;
 
+    #[ORM\ManyToOne(inversedBy: 'vehicle')]
+    private ?Collectivity $collectivity = null;
+
+    #[ORM\OneToOne(mappedBy: 'vehicle', cascade: ['persist', 'remove'])]
+    private ?Customer $customer = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -119,6 +125,40 @@ class Vehicle
     public function setPicture(string $picture): self
     {
         $this->picture = $picture;
+
+        return $this;
+    }
+
+    public function getCollectivity(): ?Collectivity
+    {
+        return $this->collectivity;
+    }
+
+    public function setCollectivity(?Collectivity $collectivity): self
+    {
+        $this->collectivity = $collectivity;
+
+        return $this;
+    }
+
+    public function getCustomer(): ?Customer
+    {
+        return $this->customer;
+    }
+
+    public function setCustomer(?Customer $customer): self
+    {
+        // unset the owning side of the relation if necessary
+        if ($customer === null && $this->customer !== null) {
+            $this->customer->setVehicle(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($customer !== null && $customer->getVehicle() !== $this) {
+            $customer->setVehicle($this);
+        }
+
+        $this->customer = $customer;
 
         return $this;
     }
