@@ -30,7 +30,7 @@
 					<td>{{ vehicle.energy }}</td>
 					<td>{{ vehicle.registrationPlate }}</td>
 					<td>{{ vehicle.isAvailable ? 'Yes' : 'No' }}</td>
-					<td>{{ vehicle.picture }}</td>
+					<td><img classe="img-vehicle" src="{{vehicle.picture}}" alt=""></td>
 					<td>
 						<a href="{{ path('app_vehicle_show', {'id': vehicle.id}) }}">show</a>
 						<a href="{{ path('app_vehicle_edit', {'id': vehicle.id}) }}">edit</a>
