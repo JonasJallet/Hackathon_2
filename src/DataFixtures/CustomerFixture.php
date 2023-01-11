@@ -14,39 +14,30 @@ class customerFixtures extends Fixture implements DependentFixtureInterface
         $customers = [
             [
                 'user' => 'user_1',
-                'firstname' => 'Thomas',
-                'lastname' => 'Besson',
+                'firstname' => 'Timmy',
+                'lastname' => 'Burch',
                 'phone' => '0623456589',
                 'address' => 'Chemin de la tuilerie',
-                'zipcode' => '49000',
-                'city' => 'Angers',
+                'zipcode' => '69150',
+                'city' => 'Décines-Charpieu',
             ],
             [
                 'user' => 'user_2',
-                'firstname' => 'Marcia',
+                'firstname' => 'Chacha',
                 'lastname' => 'Baila',
                 'phone' => '0629646589',
                 'address' => 'Avenue du non retour',
-                'zipcode' => '38200',
-                'city' => 'Tours',
+                'zipcode' => '69320',
+                'city' => 'Feyzin',
             ],
             [
                 'user' => 'user_3',
-                'firstname' => 'Antoine',
+                'firstname' => 'Jeje',
                 'lastname' => 'Dupont',
                 'phone' => '0623456589',
                 'address' => 'Ronde des roses',
-                'zipcode' => '59000',
+                'zipcode' => '69003',
                 'city' => 'Lyon',
-            ],
-            [
-                'user' => 'user_4',
-                'firstname' => 'Chacha',
-                'lastname' => 'Da Rugna',
-                'phone' => '0687656589',
-                'address' => 'Route du talent',
-                'zipcode' => '01000',
-                'city' => 'Chezpo',
             ],
         ];
 
@@ -69,7 +60,6 @@ class customerFixtures extends Fixture implements DependentFixtureInterface
     {
         return [
             UserFixtures::class,
-            StackFixtures::class,
         ];
     }
 }
