@@ -6,7 +6,7 @@
 			{% endblock %}
 		</title>
 		<link
-		rel="icon" type="image/png" href="{{ asset('build/images/favicon.png') }}"/>
+		rel="icon" type="image/png" href="{{ asset('build/images/logo.png') }}"/>
 		{# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
 		{% block stylesheets %}
 			{{ encore_entry_link_tags('app') }}
@@ -14,7 +14,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<meta charset="UTF-8">
 	</head>
-	<body class="{% block classBody %}{% endblock %}">
+	<body class="{% block classBody %}{% endblock %} test">
 		{% include '_navbar.html.twig' %}
 		{% block body %}{% endblock %}
 
