@@ -31,6 +31,9 @@ class Vehicle
     #[ORM\Column]
     private ?bool $isAvailable = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $picture = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -104,6 +107,18 @@ class Vehicle
     public function setIsAvailable(bool $isAvailable): self
     {
         $this->isAvailable = $isAvailable;
+
+        return $this;
+    }
+
+    public function getPicture(): ?string
+    {
+        return $this->picture;
+    }
+
+    public function setPicture(string $picture): self
+    {
+        $this->picture = $picture;
 
         return $this;
     }
