@@ -33,7 +33,9 @@
 					<td><img class="img-vehicle" src="{{vehicle.picture}}" alt=""></td>
 					<td>
 						<a href="{{ path('app_vehicle_show', {'id': vehicle.id}) }}">show</a>
-						<a href="{{ path('app_vehicle_edit', {'id': vehicle.id}) }}">edit</a>
+                        {% if is_granted('ROLE_ADMIN') %}
+						    <a href="{{ path('app_vehicle_edit', {'id': vehicle.id}) }}">edit</a>
+                        {% endif %}
 					</td>
 				</tr>
 			{% else %}
