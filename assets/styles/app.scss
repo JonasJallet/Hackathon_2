@@ -5,6 +5,7 @@
 @import "navBar";
 @import "home";
 @import "form";
+@import "card";
 
 .login-background{
     background-color:   #f2f2f2;
@@ -33,8 +34,9 @@ h2 {
 }
 
 .img-vehicle {
-    max-width: 125px;
-    max-height: 125px;
+    width: 200px;
+
+    object-fit: cover;
 }
 
 .logo-menu {
