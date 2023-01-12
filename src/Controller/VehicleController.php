@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Customer;
 use App\Entity\Vehicle;
 use App\Form\VehicleType;
+use App\Repository\CustomerRepository;
 use App\Repository\VehicleRepository;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
@@ -103,29 +104,30 @@ class VehicleController extends AbstractController
     }
 
     #[Route('/location/{id}', name: 'app_vehicle_booking', requirements: ['id' => '\d+'])]
-    public function booking(Vehicle $vehicle = null, Customer $customer, EntityManagerInterface $bdd): Response
+    public function booking(VehicleRepository $vehicleRepository, CustomerRepository $customerRepository, EntityManagerInterface $bdd): Response
     {
-        if (!$vehicle) {
-            return $this->redirectToRoute('app_vehicle_index');
-        }
+        $vehicle = new Vehicle();
+        $customer = new Customer();
 
         if ($vehicle->isIsAvailable() == true) {
             $vehicle->setIsAvailable(false);
-            $vehicle->setCustomer($customer->getId());
+            $vehicle->setCustomer($customerRepository->getId());
+            $vehicleRepository->save($vehicle, true);
             $customer->setVehicle($vehicle->getId());
+            $customerRepository->save($customer, true);
             return $this->redirectToRoute('app_vehicle_index');
         } else {
             if ($vehicle->getId() == $customer->getVehicle()) {
                 $vehicle->setIsAvailable(true);
                 $vehicle->setCustomer(null);
+                $vehicleRepository->save($vehicle, true);
                 $customer->setVehicle(null);
+                $customerRepository->save($customer, true);
                 return $this->redirectToRoute('app_vehicle_index');
             } else {
                 return $this->redirectToRoute('app_vehicle_index');
             }
         }
-        $bdd->persist($vehicle, true);
-        $bdd->flush();
 
         return $this->redirectToRoute('app_vehicle_index');
     }
