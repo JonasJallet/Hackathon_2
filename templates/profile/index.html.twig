@@ -4,11 +4,14 @@
 {% endblock %}
 
 {% block body %}
-	<h1 class="text-center mt-5 mb-5">Mon profil</h1>
-	<p>Prénom :
-		{{ customer.firstName }}</p>
-	<p>Nom :
-		{{ customer.lastName }}</p>
-	<p>Nom :
-		{{ customer.disabilityCard }}</p>
+	<h3 class="text-center mt-3 mb-3">Mon profil</h3>
+
+	<main class="container">
+		<p>Prénom :
+			{{ customer.firstName }}</p>
+		<p>Nom :
+			{{ customer.lastName }}</p>
+		<p>Nom :
+			{{ customer.disabilityCard }}</p>
+	</main>
 {% endblock %}
