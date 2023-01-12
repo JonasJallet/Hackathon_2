@@ -13,7 +13,7 @@ class ProfileController extends AbstractController
     public function index(CustomerRepository $customerRepository): Response
     {
         return $this->render('customer/index.html.twig', [
-            'customers' => $customerRepository->findOneBy("mettre id"),
+            'customers' => $customerRepository->findAll(),
         ]);
     }
 }
