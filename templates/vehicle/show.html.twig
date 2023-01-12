@@ -4,48 +4,48 @@
 {% endblock %}
 
 {% block body %}
-	<h1>Vehicle</h1>
 
-	<table class="table">
-		<tbody>
-			<tr>
-				<th>Id</th>
-				<td>{{ vehicle.id }}</td>
-			</tr>
-			<tr>
-				<th>Brand</th>
-				<td>{{ vehicle.brand }}</td>
-			</tr>
-			<tr>
-				<th>Model</th>
-				<td>{{ vehicle.model }}</td>
-			</tr>
-			<tr>
-				<th>Mileage</th>
-				<td>{{ vehicle.mileage }}</td>
-			</tr>
-			<tr>
-				<th>Energy</th>
-				<td>{{ vehicle.energy }}</td>
-			</tr>
-			<tr>
-				<th>RegistrationPlate</th>
-				<td>{{ vehicle.registrationPlate }}</td>
-			</tr>
-			<tr>
-				<th>IsAvailable</th>
-				<td>{{ vehicle.isAvailable ? 'Yes' : 'No' }}</td>
-			</tr>
-			<tr>
-				<th>Picture</th>
-				<td>{{ vehicle.picture }}</td>
-			</tr>
-		</tbody>
-	</table>
+
+	<div class="row justify-content-center">
+		<div class="col-8 card mb-3 p-0">
+			<img class="card-img-top" src="{{ vehicle.picture }}" alt="Card image cap">
+			<div class="card-img-overlay">
+				<div class="card-nav d-flex justify-content-end">
+					<h4 class="card-title title-nav-card">
+						{{ vehicle.brand }}
+						-
+						{{ vehicle.model }}</h4>
+					<a href="{{ path('app_vehicle_edit', {'id': vehicle.id}) }}"><img class="d-flex flex-end" src="{{ asset('build/images/edit.png') }}" alt="" width="35" heigh="35"></a>
+					<a href="{{ path('app_vehicle_edit', {'id': vehicle.id}) }}"><img class="d-flex flex-end" src="{{ asset('build/images/delete.png') }}" alt="" width="35" heigh="35"></a>
+				</div>
+			</div>
+			<div class="card-body">
+				<h5 class="card-title">Card title</h5>
+				<table class="table">
+					<tbody>
+						<tr>
+							<th>Mileage</th>
+							<td>{{ vehicle.mileage }}</td>
+						</tr>
+						<tr>
+							<th>Energy</th>
+							<td>{{ vehicle.energy }}</td>
+						</tr>
+						<tr>
+							<th>RegistrationPlate</th>
+							<td>{{ vehicle.registrationPlate }}</td>
+						</tr>
+						<tr>
+							<th>IsAvailable</th>
+							<td>{{ vehicle.isAvailable ? 'Yes' : 'No' }}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
 
 	<a href="{{ path('app_vehicle_index') }}">back to list</a>
-
-	<a href="{{ path('app_vehicle_edit', {'id': vehicle.id}) }}">edit</a>
 
 	{{ include('vehicle/_delete_form.html.twig') }}
 {% endblock %}
