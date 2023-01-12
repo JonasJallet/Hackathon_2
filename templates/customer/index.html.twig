@@ -32,8 +32,10 @@
 					<td>{{ customer.zipcode }}</td>
 					<td>{{ customer.city }}</td>
 					<td>
-						<a href="{{ path('app_customer_show', {'id': customer.id}) }}">show</a>
-						<a href="{{ path('app_customer_edit', {'id': customer.id}) }}">edit</a>
+						<a href="{{ path('app_customer_show', {'id': customer.id}) }}"><img class="" src="{{ asset('build/images/show.png') }}" alt="" width="35" heigh="35"></a>
+						{% if is_granted('ROLE_ADMIN') %}
+							<a href="{{ path('app_customer_edit', {'id': customer.id}) }}"><img class="" src="{{ asset('build/images/edit.png') }}" alt="" width="35" heigh="35"></a>
+						{% endif %}
 					</td>
 				</tr>
 			{% else %}
