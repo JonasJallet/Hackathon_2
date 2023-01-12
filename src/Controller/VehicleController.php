@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
-#[Route('/vehicle')]
+#[Route('/vehicule')]
 class VehicleController extends AbstractController
 {
     #[Route('/', name: 'app_vehicle_index', methods: ['GET'])]
@@ -22,8 +22,12 @@ class VehicleController extends AbstractController
         ]);
     }
 
+<<<<<<< HEAD
     #[IsGranted('ROLE_ADMIN')]
     #[Route('/new', name: 'app_vehicle_new', methods: ['GET', 'POST'])]
+=======
+    #[Route('/creer', name: 'app_vehicle_new', methods: ['GET', 'POST'])]
+>>>>>>> dev
     public function new(Request $request, VehicleRepository $vehicleRepository): Response
     {
         $vehicle = new Vehicle();
@@ -42,7 +46,7 @@ class VehicleController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_vehicle_show', methods: ['GET'])]
+    #[Route('/vehicule/{id}', name: 'app_vehicle_show', methods: ['GET'])]
     public function show(Vehicle $vehicle): Response
     {
         return $this->render('vehicle/show.html.twig', [
@@ -50,8 +54,12 @@ class VehicleController extends AbstractController
         ]);
     }
 
+<<<<<<< HEAD
     #[IsGranted('ROLE_ADMIN')]
     #[Route('/{id}/edit', name: 'app_vehicle_edit', methods: ['GET', 'POST'])]
+=======
+    #[Route('/modifier/{id}', name: 'app_vehicle_edit', methods: ['GET', 'POST'])]
+>>>>>>> dev
     public function edit(Request $request, Vehicle $vehicle, VehicleRepository $vehicleRepository): Response
     {
         $form = $this->createForm(VehicleType::class, $vehicle);
@@ -69,8 +77,12 @@ class VehicleController extends AbstractController
         ]);
     }
 
+<<<<<<< HEAD
     #[IsGranted('ROLE_ADMIN')]
     #[Route('/{id}', name: 'app_vehicle_delete', methods: ['POST'])]
+=======
+    #[Route('/supprimer/{id}', name: 'app_vehicle_delete', methods: ['POST'])]
+>>>>>>> dev
     public function delete(Request $request, Vehicle $vehicle, VehicleRepository $vehicleRepository): Response
     {
         if ($this->isCsrfTokenValid('delete' . $vehicle->getId(), $request->request->get('_token'))) {

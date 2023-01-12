@@ -16,9 +16,14 @@
 					<a class="nav-link" href="{{ path('app_customer_index') }}">Nos clients</a>
 				</li>
 			</ul>
+<<<<<<< HEAD
 			<a class="nav-link" href="{{ path('app_login') }}">
 				<img class="logo-profil mx-5 d-none d-lg-block" src="{{ asset('build/images/profil-menu.svg') }}" alt="">
 			</a>
+=======
+			<a href="{{ path('app_login') }}" class="text-souligne"><img class="logo-profil mx-5 d-none d-lg-block" src="{{ asset('build/images/profil-menu.svg') }}" alt=""></a>
+			{% if app.user %}<a href="{{ path('app_logout') }}" class="text-souligne"><img class="mx-5 d-none d-lg-block" src="{{ asset('build/images/logout.png') }}" alt="" width="25" heigh="25"></a>{% endif %}
+>>>>>>> dev
 			<a href="https://www.grandlyon.com/"><img class="logo-metropole" src="{{ asset('build/images/logo-metropole.png') }}" alt=""></a>
 		</div>
 	</div>

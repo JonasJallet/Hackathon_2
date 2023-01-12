@@ -1,13 +1,8 @@
 <!DOCTYPE html>
 <html lang="fr">
 	<head>
-		<title>
-			{% block title %}Handi'Loc
-			{% endblock %}
-		</title>
-		<link
-		rel="icon" type="image/png" href="{{ asset('build/images/logo.png') }}"/>
-		{# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+		<title>{% block title %}Handi'Loc{% endblock %}</title>
+		<link rel="icon" type="image/png" href="{{ asset('build/images/logo.png') }}"/>
 		{% block stylesheets %}
 			{{ encore_entry_link_tags('app') }}
 		{% endblock %}
