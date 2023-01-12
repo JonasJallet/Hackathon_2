@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Customer;
 use App\Entity\Vehicle;
 use App\Form\VehicleType;
 use App\Repository\VehicleRepository;
@@ -24,8 +25,16 @@ class VehicleController extends AbstractController
         ]);
     }
 
+    #[Route('/{id}', name: 'app_vehicle_show', methods: ['GET'])]
+    public function show(Vehicle $vehicle): Response
+    {
+        return $this->render('vehicle/show.html.twig', [
+            'vehicle' => $vehicle,
+        ]);
+    }
+
     #[IsGranted('ROLE_ADMIN')]
-    #[Route('/new', name: 'app_vehicle_new', methods: ['GET', 'POST'])]
+    #[Route('/creer-un-vehicule', name: 'app_vehicle_new', methods: ['GET', 'POST'])]
     public function new(Request $request, VehicleRepository $vehicleRepository): Response
     {
         $vehicle = new Vehicle();
@@ -44,16 +53,8 @@ class VehicleController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_vehicle_show', methods: ['GET'])]
-    public function show(Vehicle $vehicle): Response
-    {
-        return $this->render('vehicle/show.html.twig', [
-            'vehicle' => $vehicle,
-        ]);
-    }
-
     #[IsGranted('ROLE_ADMIN')]
-    #[Route('/{id}/edit', name: 'app_vehicle_edit', methods: ['GET', 'POST'])]
+    #[Route('/edition/{id}', name: 'app_vehicle_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Vehicle $vehicle, VehicleRepository $vehicleRepository): Response
     {
         $form = $this->createForm(VehicleType::class, $vehicle);
@@ -72,7 +73,7 @@ class VehicleController extends AbstractController
     }
 
     #[IsGranted('ROLE_ADMIN')]
-    #[Route('/{id}', name: 'app_vehicle_delete', methods: ['POST'])]
+    #[Route('/supprimer/{id}', name: 'app_vehicle_delete', methods: ['POST'])]
     public function delete(Request $request, Vehicle $vehicle, VehicleRepository $vehicleRepository): Response
     {
         if ($this->isCsrfTokenValid('delete' . $vehicle->getId(), $request->request->get('_token'))) {
@@ -82,8 +83,9 @@ class VehicleController extends AbstractController
         return $this->redirectToRoute('app_vehicle_index', [], Response::HTTP_SEE_OTHER);
     }
 
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/dispo/{id}', name: 'app_vehicle_dispo', requirements: ['id' => '\d+'])]
-    public function modify(Request $request, Vehicle $vehicle = null, EntityManagerInterface $bdd): Response
+    public function modify(Vehicle $vehicle = null, EntityManagerInterface $bdd): Response
     {
         if (!$vehicle) {
             return $this->redirectToRoute('app_vehicle_index');
@@ -93,6 +95,34 @@ class VehicleController extends AbstractController
             $vehicle->setIsAvailable(false);
         } else {
             $vehicle->setIsAvailable(true);
+        }
+        $bdd->persist($vehicle, true);
+        $bdd->flush();
+
+        return $this->redirectToRoute('app_vehicle_index');
+    }
+
+    #[Route('/location/{id}', name: 'app_vehicle_booking', requirements: ['id' => '\d+'])]
+    public function booking(Vehicle $vehicle = null, Customer $customer, EntityManagerInterface $bdd): Response
+    {
+        if (!$vehicle) {
+            return $this->redirectToRoute('app_vehicle_index');
+        }
+
+        if ($vehicle->isIsAvailable() == true) {
+            $vehicle->setIsAvailable(false);
+            $vehicle->setCustomer($customer->getId());
+            $customer->setVehicle($vehicle->getId());
+            return $this->redirectToRoute('app_vehicle_index');
+        } else {
+            if ($vehicle->getId() == $customer->getVehicle()) {
+                $vehicle->setIsAvailable(true);
+                $vehicle->setCustomer(null);
+                $customer->setVehicle(null);
+                return $this->redirectToRoute('app_vehicle_index');
+            } else {
+                return $this->redirectToRoute('app_vehicle_index');
+            }
         }
         $bdd->persist($vehicle, true);
         $bdd->flush();
