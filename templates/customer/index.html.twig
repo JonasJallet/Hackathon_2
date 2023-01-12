@@ -4,26 +4,24 @@
 {% endblock %}
 
 {% block body %}
-	<h3>Customer index</h3>
+	<h3 class="text-center mt-5 mb-5">Liste des utilisateurs</h3>
 
 	<table class="table">
 		<thead>
 			<tr>
-				<th>Id</th>
-				<th>FirstName</th>
-				<th>LastName</th>
-				<th>DisabilityCard</th>
-				<th>Phone</th>
-				<th>Address</th>
-				<th>Zipcode</th>
-				<th>City</th>
-				<th>actions</th>
+				<th>Prénom</th>
+				<th>Nom</th>
+				<th>N° CMI</th>
+				<th>Téléphone</th>
+				<th>Addresse</th>
+				<th>Code Postal</th>
+				<th>Ville</th>
+				<th>Actions</th>
 			</tr>
 		</thead>
 		<tbody>
 			{% for customer in customers %}
 				<tr>
-					<td>{{ customer.id }}</td>
 					<td>{{ customer.firstName }}</td>
 					<td>{{ customer.lastName }}</td>
 					<td>{{ customer.disabilityCard }}</td>
@@ -40,11 +38,9 @@
 				</tr>
 			{% else %}
 				<tr>
-					<td colspan="9">no records found</td>
+					<td colspan="9">Aucun utilisateur trouvé</td>
 				</tr>
 			{% endfor %}
 		</tbody>
 	</table>
-
-	<a href="{{ path('app_customer_new') }}">Create new</a>
 {% endblock %}
