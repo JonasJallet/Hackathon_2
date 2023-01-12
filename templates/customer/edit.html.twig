@@ -1,14 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Modifier utilisateur | Handi'Loc
+{% block title %}Modifier l'utilisateur
 {% endblock %}
 
 {% block body %}
-	<h1>Edit Customer</h1>
-
-	{{ include('customer/_form.html.twig', {'button_label': 'Sauvegarder'}) }}
-
-	<a href="{{ path('app_customer_index') }}">back to list</a>
-
-	{{ include('customer/_delete_form.html.twig') }}
+	<main class="mainSection mb-5">
+		<div class="mainForm">
+			<h3 class="mt-4">Modifier l'utilisateur</h3>
+			{{ include('customer/_form.html.twig', {'button_label': 'Sauvegarder'}) }}
+		</div>
+	</main>
 {% endblock %}
