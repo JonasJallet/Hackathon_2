@@ -20,7 +20,15 @@
 				<tr>
 					<td>{{ vehicle.brand }}</td>
 					<td>{{ vehicle.model }}</td>
-					{% if is_granted('ROLE_ADMIN') %}<td>{{ vehicle.isAvailable ? 'Oui' : 'Non' }}</td>{% endif %}
+					{% if is_granted('ROLE_ADMIN') %}
+						<td>
+							{% if vehicle.isAvailable == true %}
+								<img class="" src="{{ asset("build/images/yes.png") }}" alt="" width="35" heigh="35">
+							{% else %}
+								<img class="" src="{{ asset("build/images/no.png") }}" alt="" width="35" heigh="35">
+							{% endif %}
+						</td>
+					{% endif %}
 					<td><img class="img-vehicle" src="{{vehicle.picture}}" alt=""></td>
 					<td>
 						<a href="{{ path('app_vehicle_show', {'id': vehicle.id}) }}"><img class="" src="{{ asset('build/images/show.png') }}" alt="" width="35" heigh="35"></a>
