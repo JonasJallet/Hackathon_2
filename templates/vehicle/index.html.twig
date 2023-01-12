@@ -6,7 +6,7 @@
 
 {% block body %}
 	<h3 class="text-center mt-3 mb-3">Liste des véhicules disponibles</h3>
-	<a href="{{ path('app_vehicle_new') }}">Ajout nouveau véhicule</a>
+	<a href="{{ path('app_vehicle_new') }}" class="button-add-list btn btn-dark">Ajout nouveau véhicule</a>
 
 	{% if is_granted('ROLE_ADMIN') %}
 		<table class="table">
