@@ -13,12 +13,16 @@
 			<h3 class="row align-self-start m-5 border">
 				<strong>Panneau administrateur<strong></h3>
 					<div class="row align-self-start mx-5 d-flex justify-content-center">
-						<button class="btn btn-dark m-1 w-25" type="button">
-							<a href="{{ path('app_vehicle_index') }}" class="text-decoration-none text-white">Véhicule</a>
-						</button>
-						<button class="btn btn-dark m-1 w-25" type="button">
-							<a href="{{ path('app_profile') }}" class="text-decoration-none text-white">Utilisateurs</a>
-						</button>
+						<a href="{{ path('app_vehicle_index') }}" class="text-decoration-none text-white">
+							<button class="btn btn-dark m-1 w-25 rounded-0" type="button">
+								Véhicules
+							</button>
+						</a>
+						<a href="{{ path('app_profile') }}" class="text-decoration-none text-white">
+							<button class="btn btn-dark m-1 w-25 rounded-0" type="button">
+								Utilisateurs
+							</button>
+						</a>
 					</div>
 				</div>
 			</section>

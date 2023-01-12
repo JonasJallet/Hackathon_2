@@ -13,7 +13,7 @@
 	<div class="center-login-home-button">
 		{% if is_granted('ROLE_CUSTOMER') %}
 			{% else %}
-				<a href="{{ path('app_vehicle_index') }}" class="home-login btn btn-light fixed-bottom mb-5">Connexion</a>
+				<a href="{{ path('app_login') }}" class="home-login btn btn-light fixed-bottom mb-5">Connexion</a>
 		{% endif %}
 	</div>
 {% endblock %}
