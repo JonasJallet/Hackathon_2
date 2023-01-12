@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouveau Véhicule | Handi'Loc{% endblock %}
+
+{% block body %}
+	<main class="mainSection mb-5">
+		<div class="mainForm">
+			<h3 class="mt-4">Ajouter un véhicule</h3>
+			{{ include('vehicle/_form.html.twig') }}
+		</div>
+	</main>
+{% endblock %}

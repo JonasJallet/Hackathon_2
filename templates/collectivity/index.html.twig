@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Administrateur
+{% endblock %}
+
+{% block body %}
+	<section class="container d-flex flex-column">
+		<div class="row align-self-center">
+			<h3 class="m-5">ESPACE ADMIN</h3>
+			<hr>
+		</div>
+		<div class="text-center">
+			<h3 class="row align-self-start m-5 border">
+				<strong>Panneau administrateur<strong></h3>
+					<div class="row align-self-start mx-5 d-flex justify-content-center">
+						<a href="{{ path('app_vehicle_index') }}" class="text-decoration-none text-white">
+							<button class="button-panel-admin btn btn-dark m-1 rounded-0" type="button">
+								Véhicules
+							</button>
+						</a>
+						<a href="{{ path('app_profile') }}" class="text-decoration-none text-white">
+							<button class="button-panel-admin btn btn-dark m-1 rounded-0" type="button">
+								Utilisateurs
+							</button>
+						</a>
+					</div>
+				</div>
+			</section>
+		{% endblock %}

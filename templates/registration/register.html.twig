@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscription | Handi'Loc
+{% endblock %}
+
+{% block body %}
+	<h1>Inscription</h1>
+	<div class="text-center">
+		<div class="bloc-container d-flex justify-content-center">
+			<div class="row p-2 login-background w-100">
+				<p class="mt-2">Inscrivez-vous chez Handi'Loc</p>
+				<hr>
+				<div class="d-flex flex-column">
+					<div>
+						{{ form_start(registrationForm) }}
+					</div>
+					<div>
+						{{ form_row(registrationForm.email) }}
+					</div>
+					<div>
+						{{ form_row(registrationForm.plainPassword, {label: 'Mot de passe'}) }}
+					</div>
+				</div>
+				<button type="submit" class="btn">Inscription</button>
+				{{ form_end(registrationForm) }}
+			</div>
+		</div>
+	</div>
+{% endblock %}

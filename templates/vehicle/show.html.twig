@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Vehicule n°{{ vehicle.id }}
+	| Handi'Loc
+{% endblock %}
+
+{% block body %}
+
+	<div class="row justify-content-center p-4">
+		<div class="col-8 card mb-3 p-0">
+			<img class="card-img-top" src="{{ vehicle.picture }}" alt="Card image cap">
+			<div class="card-img-overlay">
+				<div class="card-nav d-flex justify-content-end">
+					<h3 class="card-title title-nav-card">
+						{{ vehicle.brand }}
+						-
+						{{ vehicle.model }}</h3>
+					{% if is_granted('ROLE_ADMIN') %}
+						<a href="{{ path('app_vehicle_edit', {'id': vehicle.id}) }}"><img class="d-flex flex-end mx-1" src="{{ asset('build/images/edit.png') }}" alt="" width="35" heigh="35"></a>
+						{{ include('vehicle/_delete_form.html.twig') }}
+					{% endif %}
+				</div>
+			</div>
+			<div class="card-body">
+				<table class="table m-0">
+					<tbody>
+						<tr>
+							<th class="border-0">Kilomètrage</th>
+							<td class="border-0">{{ vehicle.mileage }}</td>
+						</tr>
+						<tr>
+							<th class="border-0">Type de Carburant</th>
+							<td class="border-0">{{ vehicle.energy }}</td>
+						</tr>
+						<tr>
+							<th class="border-0">Plaque d'immatriculation</th>
+							<td class="border-0">{{ vehicle.registrationPlate }}</td>
+						</tr>
+						{% if is_granted('ROLE_ADMIN') %}
+							<tr>
+								<th class="border-0">Disponible</th>
+								<td class="border-0">{{ vehicle.isAvailable ? 'Oui' : 'Non' }}</td>
+							</tr>
+						{% endif %}
+					</tbody>
+				</tbody>
+			</tr>
+		</tbody>
+	</table>
+</div></div></div>{% endblock %}

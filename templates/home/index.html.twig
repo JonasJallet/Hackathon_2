@@ -1,15 +1,19 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Home{% endblock %}
+{% block classBody %}indexBackground
+{% endblock %}
 
 {% block body %}
-    <div class="pink-stripe">
-        <h1>
-            Let's start coding&nbsp;&#129304;
-        </h1>
-    </div>
-    <div class="white-stripe">
-        <img src="{{ asset('build/images/LOGO_WILD_CODE_SCHOOL.png') }}"
-             alt="">
-    </div>
+	<div class="title-home">
+		<h1 class"text-center">
+			Empruntez un véhicule TPMR
+		</h1>
+		<h2>Disponible 24h/24 et 7j/7, Handi'Loc vous accompagne à chaque instant</h2>
+	</div>
+	<div class="center-login-home-button">
+		{% if is_granted('ROLE_CUSTOMER') %}
+			{% else %}
+				<a href="{{ path('app_login') }}" class="home-login btn btn-light fixed-bottom mb-5">Connexion</a>
+		{% endif %}
+	</div>
 {% endblock %}

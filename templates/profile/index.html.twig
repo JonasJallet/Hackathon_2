@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon Profil | Handi'Loc
+{% endblock %}
+
+{% block body %}
+	<h3 class="text-center mt-3 mb-3">Mon profil</h3>
+	<div class="row justify-content-center my-5">
+		<div class="col-12 col-md-9 col-lg-7 col-xl-6 col-xxl-6">
+			<div class="card_id shadow-none border-1 p-4 card mb-5 card-cover overflow-hidden text-bg-white rounded-4 shadow-lg d-flex flex-row shadow-lg">
+				<div class="col-4">
+					<img src="{{ customer.picture }}" class="img-fluid avatar" alt="image artiste">
+				</div>
+				<div class="col-8 d-flex align-items-center">
+					<div class="card-body">
+						<h4 class="card-text">
+							{{ customer.firstName }}
+							{{ customer.lastName }}
+						</h4>
+						<h5 class="card-text lead">Adresse :
+							{{ customer.address }}</br>
+						{{ customer.zipcode }}
+						{{ customer.city }}
+					</h5>
+					<h5 class="card-text lead">Téléphone :
+						{{ customer.phone }}
+					</h5>
+					<h5 class="card-text lead">Carte d'invalidité n°
+						{{ customer.disabilityCard }}</h5>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

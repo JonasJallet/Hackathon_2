@@ -1,0 +1,83 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des vehicule
+{% endblock %}
+
+
+{% block body %}
+	{% if is_granted('ROLE_ADMIN') %}
+		<h3 class="text-center mt-3 mb-3">Liste des véhicules</h3>
+	{% else %}
+		<h3 class="text-center mt-3 mb-3">Liste des véhicules disponibles</h3>
+	{% endif %}
+
+	{% if is_granted('ROLE_ADMIN') %}
+		<a href="{{ path('app_vehicle_new') }}" class="button-add-list btn btn-dark">Ajouter un nouveau véhicule</a>
+
+		<main class="container">
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Marque</th>
+						<th>Modèle</th>
+						<th>Disponibilité</th>
+						<th>Photos</th>
+						<th>Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for vehicle in vehicles %}
+						<tr>
+							<td>{{ vehicle.brand }}</td>
+							<td>{{ vehicle.model }}</td>
+							<td>
+								{% if vehicle.isAvailable == true %}
+									<a href="{{ path('app_vehicle_dispo', {'id': vehicle.id}) }}"><img class="" src="{{ asset("build/images/yes.png") }}" alt="" width="35" heigh="35"></a>
+								{% else %}
+									<a href="{{ path('app_vehicle_dispo', {'id': vehicle.id}) }}"><img class="" src="{{ asset("build/images/no.png") }}" alt="" width="35" heigh="35"></a>
+								{% endif %}
+							</td>
+							<td><img class="img-vehicle" src="{{vehicle.picture}}" alt=""></td>
+							<td>
+								<div class="d-flex">
+									<a href="{{ path('app_vehicle_show', {'id': vehicle.id}) }}"><img class="mx-1" src="{{ asset('build/images/show.png') }}" alt="" width="35" heigh="35"></a>
+									<a href="{{ path('app_vehicle_edit', {'id': vehicle.id}) }}"><img class="mx-1" src="{{ asset('build/images/edit.png') }}" alt="" width="35" heigh="35"></a>
+									{{ include('vehicle/_delete_form.html.twig') }}
+								</div>
+							</td>
+						</tr>
+					{% else %}
+						<tr>
+							<td colspan="9">Aucun véhicule disponible</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</main>
+
+	{% else %}
+
+		<div class="list-vehicule-customer row d-flex flex-row m-0">
+			{% for vehicle in vehicles %}
+				{% if vehicle.isAvailable == true %}
+					<div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xxl-3 d-flex justify-content-center">
+						<a class="a-card" href="{{ path('app_vehicle_show', {'id': vehicle.id}) }}">
+							<div class="card p-0 mb-4" style="width: 20rem;">
+								<img class="card-img-top-user" src="{{vehicle.picture}}" alt="Card image cap">
+								<div class="card-body card-body-text">
+									<h5 class="card-title text-center">
+										{{ vehicle.brand }}
+										-
+										{{ vehicle.model }}
+									</h5>
+								</div>
+							</div>
+						</a>
+					</div>
+				{% endif %}
+			{% endfor %}
+		</div>
+
+
+	{% endif %}
+{% endblock %}
