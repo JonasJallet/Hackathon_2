@@ -6,15 +6,6 @@
 .mainSection {
     display: flex;
     justify-content: center;
-
-    a {
-        color: red;
-
-        &:hover {
-            color: red;
-            cursor: pointer;
-        }
-    }
 }
 
 .form-label {

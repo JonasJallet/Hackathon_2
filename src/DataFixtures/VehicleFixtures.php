@@ -11,15 +11,6 @@ class VehicleFixtures extends Fixture
     const VEHICLES = [
 
         [
-            'brand' => "Dodge",
-            'model' => "Grand Caravan",
-            'mileage' => 3,
-            'energy' => "électrique",
-            'registrationPlate' => "ZZ-123-ZZ",
-            'isAvailable' => true,
-            'picture' => 'https://www.avischauffeur.fr/images/site/notre-offre/pmr_detail_avis-chauffeur.jpg'
-        ],
-        [
             'brand' => "Ford ",
             'model' => "Transit Connect Wagon",
             'mileage' => 36,
@@ -38,15 +29,6 @@ class VehicleFixtures extends Fixture
             'picture' => 'https://hacavie.fr/wp-content/uploads/2012/12/mercedes_sprinter_32N_frontaccess_hay7110-2-1.jpg'
         ],
         [
-            'brand' => "Toyota",
-            'model' => "Sienna",
-            'mileage' => 35355,
-            'energy' => "hybride",
-            'registrationPlate' => "II-123-ZZ",
-            'isAvailable' => true,
-            'picture' => 'https://i.ytimg.com/vi/-oR8awK11Rg/maxresdefault.jpg'
-        ],
-        [
             'brand' => "Honda",
             'model' => "Odyssey",
             'mileage' => 355566,
@@ -54,15 +36,6 @@ class VehicleFixtures extends Fixture
             'registrationPlate' => "PP-123-ZZ",
             'isAvailable' => true,
             'picture' => 'https://www.mobilityworks.com/wp-content/uploads/2023-honda-odyssey-braun-white.jpg'
-        ],
-        [
-            'brand' => "Kia",
-            'model' => "Sedona",
-            'mileage' => 355455,
-            'energy' => "électrique",
-            'registrationPlate' => "FF-123-ZZ",
-            'isAvailable' => true,
-            'picture' => 'https://di-uploads-pod26.dealerinspire.com/freedommotorsusa1/uploads/2021/06/Half-Cut-Toyota-Sienna-Hybrid-4.jpg'
         ],
         [
             'brand' => "Volkswagen",
@@ -135,15 +108,6 @@ class VehicleFixtures extends Fixture
             'registrationPlate' => "TR-339-UO",
             'isAvailable' => true,
             'picture' => 'https://www.comptoirdessolutions.org/wp-content/uploads/2018/04/134-Elbee-CARRE.png'
-        ],
-        [
-            'brand' => "Ellectra",
-            'model' => "Kimsi",
-            'mileage' => 7,
-            'energy' => "electrique",
-            'registrationPlate' => "TR-334-TO",
-            'isAvailable' => true,
-            'picture' => 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRr10QaVCnd3Tt_Ie9w6plRqVK5DFz2OaUzs76gmqlZL5iszxEmhx4r9l3yscmWxyfPaks&usqp=CAU'
         ],
     ];
 
