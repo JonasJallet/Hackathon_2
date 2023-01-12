@@ -9,10 +9,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 #[Route('/customer')]
 class CustomerController extends AbstractController
 {
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/', name: 'app_customer_index', methods: ['GET'])]
     public function index(CustomerRepository $customerRepository): Response
     {
@@ -66,6 +68,7 @@ class CustomerController extends AbstractController
         ]);
     }
 
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/{id}', name: 'app_customer_delete', methods: ['POST'])]
     public function delete(Request $request, Customer $customer, CustomerRepository $customerRepository): Response
     {
