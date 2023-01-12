@@ -5,6 +5,8 @@ namespace App\Controller;
 use App\Entity\Vehicle;
 use App\Form\VehicleType;
 use App\Repository\VehicleRepository;
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -78,5 +80,23 @@ class VehicleController extends AbstractController
         }
 
         return $this->redirectToRoute('app_vehicle_index', [], Response::HTTP_SEE_OTHER);
+    }
+
+    #[Route('/dispo/{id}', name: 'app_vehicle_dispo', requirements: ['id' => '\d+'])]
+    public function modify(Request $request, Vehicle $vehicle = null, EntityManagerInterface $bdd): Response
+    {
+        if (!$vehicle) {
+            return $this->redirectToRoute('app_vehicle_index');
+        }
+
+        if ($vehicle->isIsAvailable() == true) {
+            $vehicle->setIsAvailable(false);
+        } else {
+            $vehicle->setIsAvailable(true);
+        }
+        $bdd->persist($vehicle, true);
+        $bdd->flush();
+
+        return $this->redirectToRoute('app_vehicle_index');
     }
 }

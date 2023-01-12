@@ -1,21 +1,32 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Connexion | Handi'Loc
-{% endblock %}
+{% block title %}Connexion | Handi'Loc{% endblock %}
 
 {% block body %}
-	{% if error %}
-		<div class="text-center">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-	{% endif %}
-	<div class="bloc-container container d-flex justify-content-center">
-		<div class="row p-2 bg-danger rounded col-lg-6 col-sm-8">
-			<form class="d-flex justify-content-center flex-column rounded text-center col-xs-12 col-sm-12" action="{{ path('app_login') }}" method="post">
-				<label class="" for="username">Email</label>
-				<input class="mt-2 mb-2" type="text" id="username" name="_username" value="{{ last_username }}">
-				<label class="" for="password">Mot de passe</label>
-				<input class="mt-2" type="password" id="password" name="_password">
-				<button class="mt-3" type="submit">Connexion</button>
-			</form>
+	<div class="text-center">
+		{% if error %}
+			<div class="text-center">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+		{% endif %}
+		<div class="bloc-container d-flex justify-content-center">
+			<div class="row p-2 login-background w-100">
+				<p class="mt-2">Connectez-vous à votre compte Handi'Loc</p>
+				<hr>
+				<form class="d-flex justify-content-center flex-column text-center col-xs-12 col-sm-5 col-lg-4 col-xl-4 m-auto" action="{{ path('app_login') }}" method="post">
+					<label class="" for="username">Email</label>
+					<input class="mt-2 mb-2" type="text" id="username" name="_username" value="{{ last_username }}">
+					<label class="" for="password">Mot de passe</label>
+					<input class="mt-2" type="password" id="password" name="_password">
+					<div>
+						<button class="mt-3 mb-2 btn btn-dark" type="submit">Connexion</button>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div class="mt-3">
+			<p>Pas encore de compte ?</p>
+			<a href="{{ path('app_register') }}">
+				<button class="btn btn-dark" type="button">Créer un compte</button>
+			</a>
 		</div>
 	</div>
 {% endblock %}
