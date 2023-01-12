@@ -34,7 +34,6 @@ security:
 
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
-<<<<<<< HEAD
 
     role_hierarchy:
         ROLE_USER: ROLE_CUSTOMER
@@ -45,13 +44,6 @@ security:
     #     - { path: ^/vehicle/[a-zA-Z_0-9-]+/edit, roles: ROLE_ADMIN }
     #     - { path: ^/customer, roles: ROLE_ADMIN }
     #     - { path: ^/customer/delete/[a-zA-Z_0-9-]+, roles: ROLE_ADMIN }
-=======
-    access_control:
-        - { path: ^/vehicule/modifier/, roles: ROLE_ADMIN }
-        - { path: ^/vehicule/supprimer/, roles: ROLE_ADMIN }
-        - { path: ^/vehicule/creer/, roles: ROLE_ADMIN }
-        # - { path: ^/profile, roles: ROLE_USER }
->>>>>>> dev
 
 when@test:
     security:
