@@ -36,8 +36,8 @@ security:
     # Note: Only the *first* access control that matches will be used
 
     role_hierarchy:
-        ROLE_USER: ROLE_CUSTOMER
-        ROLE_ADMIN: ROLE_ADMIN
+        ROLE_CUSTOMER: ROLE_USER
+        ROLE_ADMIN: ROLE_CUSTOMER
     # access_control:
     #     - { path: ^/vehicle/new, roles: ROLE_ADMIN }
     #     - { path: ^/vehicle/delete/[a-zA-Z_0-9-]+, roles: ROLE_ADMIN }
