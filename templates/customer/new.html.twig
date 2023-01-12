@@ -1,11 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Nouvelle utilisateur | Handi'Loc{% endblock %}
+{% block title %}Nouvel Utilisateur | Handi'Loc
+{% endblock %}
 
 {% block body %}
-    <h1>Create new Customer</h1>
-
-    {{ include('customer/_form.html.twig') }}
-
-    <a href="{{ path('app_customer_index') }}">back to list</a>
+	<main class="mainSection mb-5">
+		<div class="mainForm">
+			<h3 class="mt-4">Ajouter un utilisateur</h3>
+			{{ include('customer/_form.html.twig') }}
+		</div>
+	</main>
 {% endblock %}
