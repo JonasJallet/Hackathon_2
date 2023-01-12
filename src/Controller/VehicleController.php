@@ -26,14 +26,6 @@ class VehicleController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_vehicle_show', methods: ['GET'])]
-    public function show(Vehicle $vehicle): Response
-    {
-        return $this->render('vehicle/show.html.twig', [
-            'vehicle' => $vehicle,
-        ]);
-    }
-
     #[IsGranted('ROLE_ADMIN')]
     #[Route('/new', name: 'app_vehicle_new', methods: ['GET', 'POST'])]
     public function new(Request $request, VehicleRepository $vehicleRepository): Response
@@ -51,6 +43,14 @@ class VehicleController extends AbstractController
         return $this->renderForm('vehicle/new.html.twig', [
             'vehicle' => $vehicle,
             'form' => $form,
+        ]);
+    }
+
+    #[Route('/{id}', name: 'app_vehicle_show', methods: ['GET'])]
+    public function show(Vehicle $vehicle): Response
+    {
+        return $this->render('vehicle/show.html.twig', [
+            'vehicle' => $vehicle,
         ]);
     }
 
@@ -86,49 +86,45 @@ class VehicleController extends AbstractController
 
     #[IsGranted('ROLE_ADMIN')]
     #[Route('/dispo/{id}', name: 'app_vehicle_dispo', requirements: ['id' => '\d+'])]
-    public function modify(Vehicle $vehicle = null, EntityManagerInterface $bdd): Response
+    public function modify(Vehicle $vehicle, EntityManagerInterface $bdd): Response
     {
-        if (!$vehicle) {
-            return $this->redirectToRoute('app_vehicle_index');
-        }
-
         if ($vehicle->isIsAvailable() == true) {
             $vehicle->setIsAvailable(false);
         } else {
             $vehicle->setIsAvailable(true);
         }
-        $bdd->persist($vehicle, true);
+        $bdd->persist($vehicle);
         $bdd->flush();
 
         return $this->redirectToRoute('app_vehicle_index');
     }
 
-    #[Route('/location/{id}', name: 'app_vehicle_booking', requirements: ['id' => '\d+'])]
-    public function booking(VehicleRepository $vehicleRepository, CustomerRepository $customerRepository, EntityManagerInterface $bdd): Response
-    {
-        $vehicle = new Vehicle();
-        $customer = new Customer();
+    // #[Route('/location/{id}', name: 'app_vehicle_booking', requirements: ['id' => '\d+'])]
+    // public function booking(VehicleRepository $vehicleRepository, CustomerRepository $customerRepository, EntityManagerInterface $bdd): Response
+    // {
+    //     $vehicle = new Vehicle();
+    //     $customer = new Customer();
 
-        if ($vehicle->isIsAvailable() == true) {
-            $vehicle->setIsAvailable(false);
-            $vehicle->setCustomer($customerRepository->getId());
-            $vehicleRepository->save($vehicle, true);
-            $customer->setVehicle($vehicle->getId());
-            $customerRepository->save($customer, true);
-            return $this->redirectToRoute('app_vehicle_index');
-        } else {
-            if ($vehicle->getId() == $customer->getVehicle()) {
-                $vehicle->setIsAvailable(true);
-                $vehicle->setCustomer(null);
-                $vehicleRepository->save($vehicle, true);
-                $customer->setVehicle(null);
-                $customerRepository->save($customer, true);
-                return $this->redirectToRoute('app_vehicle_index');
-            } else {
-                return $this->redirectToRoute('app_vehicle_index');
-            }
-        }
+    //     if ($vehicle->isIsAvailable() == true) {
+    //         $vehicle->setIsAvailable(false);
+    //         $vehicle->setCustomer($customerRepository->getId());
+    //         $vehicleRepository->save($vehicle, true);
+    //         $customer->setVehicle($vehicle->getId());
+    //         $customerRepository->save($customer, true);
+    //         return $this->redirectToRoute('app_vehicle_index');
+    //     } else {
+    //         if ($vehicle->getId() == $customer->getVehicle()) {
+    //             $vehicle->setIsAvailable(true);
+    //             $vehicle->setCustomer(null);
+    //             $vehicleRepository->save($vehicle, true);
+    //             $customer->setVehicle(null);
+    //             $customerRepository->save($customer, true);
+    //             return $this->redirectToRoute('app_vehicle_index');
+    //         } else {
+    //             return $this->redirectToRoute('app_vehicle_index');
+    //         }
+    //     }
 
-        return $this->redirectToRoute('app_vehicle_index');
-    }
+    //     return $this->redirectToRoute('app_vehicle_index');
+    // }
 }
