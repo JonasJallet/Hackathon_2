@@ -4,23 +4,22 @@
 {% endblock %}
 
 {% block body %}
-
-	<div class="example-wrapper">
-		<h1>Hello
-			{{ controller_name }}! ✅</h1>
-
-		This friendly message is coming from:
-		<ul>
-			<li>Your controller at
-				<code>
-					<a href="{{ '/home/busy-gnl/Documents/Wild Code School/HACKATONS/Hackathon_2/src/Controller/CollectivityController.php'|file_link(0) }}">src/Controller/CollectivityController.php</a>
-				</code>
-			</li>
-			<li>Your template at
-				<code>
-					<a href="{{ '/home/busy-gnl/Documents/Wild Code School/HACKATONS/Hackathon_2/templates/collectivity/index.html.twig'|file_link(0) }}">templates/collectivity/index.html.twig</a>
-				</code>
-			</li>
-		</ul>
-	</div>
-{% endblock %}
+	<section class="container d-flex flex-column">
+		<div class="row align-self-center">
+			<h3 class="m-5">ESPACE ADMIN</h3>
+			<hr>
+		</div>
+		<div class="text-center">
+			<h3 class="row align-self-start m-5 border">
+				<strong>Panneau administrateur<strong></h3>
+					<div class="row align-self-start mx-5 d-flex justify-content-center">
+						<button class="btn btn-dark m-1 w-25" type="button">
+							<a href="{{ path('app_vehicle_index') }}" class="text-decoration-none text-white">Véhicule</a>
+						</button>
+						<button class="btn btn-dark m-1 w-25" type="button">
+							<a href="{{ path('app_profile') }}" class="text-decoration-none text-white">Utilisateurs</a>
+						</button>
+					</div>
+				</div>
+			</section>
+		{% endblock %}
