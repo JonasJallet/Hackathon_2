@@ -13,6 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/customer')]
 class CustomerController extends AbstractController
 {
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/', name: 'app_customer_index', methods: ['GET'])]
     public function index(CustomerRepository $customerRepository): Response
     {
@@ -66,7 +67,8 @@ class CustomerController extends AbstractController
         ]);
     }
 
-    #[Route('/delete/{id}', name: 'app_customer_delete', methods: ['POST'])]
+    #[IsGranted('ROLE_ADMIN')]
+    #[Route('/{id}', name: 'app_customer_delete', methods: ['POST'])]
     public function delete(Request $request, Customer $customer, CustomerRepository $customerRepository): Response
     {
         if ($this->isCsrfTokenValid('delete' . $customer->getId(), $request->request->get('_token'))) {

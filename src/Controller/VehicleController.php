@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 #[Route('/vehicle')]
 class VehicleController extends AbstractController
@@ -21,6 +22,7 @@ class VehicleController extends AbstractController
         ]);
     }
 
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/new', name: 'app_vehicle_new', methods: ['GET', 'POST'])]
     public function new(Request $request, VehicleRepository $vehicleRepository): Response
     {
@@ -48,6 +50,7 @@ class VehicleController extends AbstractController
         ]);
     }
 
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/{id}/edit', name: 'app_vehicle_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Vehicle $vehicle, VehicleRepository $vehicleRepository): Response
     {
@@ -66,7 +69,8 @@ class VehicleController extends AbstractController
         ]);
     }
 
-    #[Route('/delete/{id}', name: 'app_vehicle_delete', methods: ['POST'])]
+    #[IsGranted('ROLE_ADMIN')]
+    #[Route('/{id}', name: 'app_vehicle_delete', methods: ['POST'])]
     public function delete(Request $request, Vehicle $vehicle, VehicleRepository $vehicleRepository): Response
     {
         if ($this->isCsrfTokenValid('delete' . $vehicle->getId(), $request->request->get('_token'))) {

@@ -38,12 +38,12 @@ security:
     role_hierarchy:
         ROLE_USER: ROLE_CUSTOMER
         ROLE_ADMIN: ROLE_ADMIN
-    access_control:
-        - { path: ^/vehicle/new, roles: ROLE_ADMIN }
-        - { path: ^/vehicle/delete/[a-zA-Z_0-9-]+, roles: ROLE_ADMIN }
-        - { path: ^/vehicle/[a-zA-Z_0-9-]+/edit, roles: ROLE_ADMIN }
-        - { path: ^/customer, roles: ROLE_ADMIN }
-        - { path: ^/customer/delete/[a-zA-Z_0-9-]+, roles: ROLE_ADMIN }
+    # access_control:
+    #     - { path: ^/vehicle/new, roles: ROLE_ADMIN }
+    #     - { path: ^/vehicle/delete/[a-zA-Z_0-9-]+, roles: ROLE_ADMIN }
+    #     - { path: ^/vehicle/[a-zA-Z_0-9-]+/edit, roles: ROLE_ADMIN }
+    #     - { path: ^/customer, roles: ROLE_ADMIN }
+    #     - { path: ^/customer/delete/[a-zA-Z_0-9-]+, roles: ROLE_ADMIN }
 
 when@test:
     security:
