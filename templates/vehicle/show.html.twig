@@ -38,8 +38,8 @@
 						</tr>
 						{% if is_granted('ROLE_ADMIN') %}
 							<tr>
-								<th>Disponible</th>
-								<td>{{ vehicle.isAvailable ? 'Oui' : 'Non' }}</td>
+								<th class="border-0">Disponible</th>
+								<td class="border-0">{{ vehicle.isAvailable ? 'Oui' : 'Non' }}</td>
 							</tr>
 						{% endif %}
 					</tbody>

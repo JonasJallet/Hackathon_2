@@ -7,6 +7,10 @@
 	<h3 class="text-center mt-2 mb-2">Profil de
 		{{ customer.lastName }}
 		{{ customer.firstName }}</h3>
+	<div class="d-flex justify-content-center">
+		<a href="{{ path('app_customer_edit', {'id': customer.id}) }}"><img class="mx-1" src="{{ asset('build/images/edit.png') }}" alt="" width="35" heigh="35"></a>
+		{{ include('customer/_delete_form.html.twig') }}
+	</div>
 	<div class="container">
 		<table class="table">
 			<tbody>
@@ -46,10 +50,4 @@
 			</tbody>
 		</table>
 	</div>
-
-	<a href="{{ path('app_customer_index') }}">back to list</a>
-
-	<a href="{{ path('app_customer_edit', {'id': customer.id}) }}">edit</a>
-
-	{{ include('customer/_delete_form.html.twig') }}
 {% endblock %}

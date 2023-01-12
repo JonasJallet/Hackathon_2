@@ -5,43 +5,48 @@
 
 {% block body %}
 	<h3 class="text-center mt-2 mb-2">Liste des utilisateurs</h3>
-	<a href="{{ path('app_customer_new') }}" class="button-add-list btn btn-dark">Ajouter nouvel utilisateur</a>
-	<table class="table">
-		<thead>
-			<tr>
-				<th>Prénom</th>
-				<th>Nom</th>
-				<th>N° CMI</th>
-				<th>Téléphone</th>
-				<th>Adresse</th>
-				<th>Code Postal</th>
-				<th>Ville</th>
-				<th>Actions</th>
-			</tr>
-		</thead>
-		<tbody>
-			{% for customer in customers %}
+	<a href="{{ path('app_customer_new') }}" class="button-add-list btn btn-dark">Ajouter un nouvel utilisateur</a>
+	<main class="container">
+		<table class="table">
+			<thead>
 				<tr>
-					<td>{{ customer.firstName }}</td>
-					<td>{{ customer.lastName }}</td>
-					<td>{{ customer.disabilityCard }}</td>
-					<td>+33
-						{{ customer.phone }}</td>
-					<td>{{ customer.address }}</td>
-					<td>{{ customer.zipcode }}</td>
-					<td>{{ customer.city }}</td>
-					<td>
-						<a href="{{ path('app_customer_show', {'id': customer.id}) }}"><img class="" src="{{ asset('build/images/show.png') }}" alt="" width="35" heigh="35"></a>
-						{% if is_granted('ROLE_ADMIN') %}
-							<a href="{{ path('app_customer_edit', {'id': customer.id}) }}"><img class="" src="{{ asset('build/images/edit.png') }}" alt="" width="35" heigh="35"></a>
-						{% endif %}
-					</td>
+					<th>Prénom</th>
+					<th>Nom</th>
+					<th>N° CMI</th>
+					<th>Téléphone</th>
+					<th>Adresse</th>
+					<th>Code Postal</th>
+					<th>Ville</th>
+					<th>Actions</th>
 				</tr>
-			{% else %}
-				<tr>
-					<td colspan="9">Aucun utilisateur trouvé</td>
-				</tr>
-			{% endfor %}
-		</tbody>
-	</table>
+			</thead>
+			<tbody>
+				{% for customer in customers %}
+					<tr>
+						<td>{{ customer.firstName }}</td>
+						<td>{{ customer.lastName }}</td>
+						<td>{{ customer.disabilityCard }}</td>
+						<td>+33
+							{{ customer.phone }}</td>
+						<td>{{ customer.address }}</td>
+						<td>{{ customer.zipcode }}</td>
+						<td>{{ customer.city }}</td>
+						<td>
+							<div class="d-flex">
+								<a href="{{ path('app_customer_show', {'id': customer.id}) }}"><img class="mx-1" src="{{ asset('build/images/show.png') }}" alt="" width="35" heigh="35"></a>
+								{% if is_granted('ROLE_ADMIN') %}
+									<a href="{{ path('app_customer_edit', {'id': customer.id}) }}"><img class="mx-1" src="{{ asset('build/images/edit.png') }}" alt="" width="35" heigh="35"></a>
+									{{ include('customer/_delete_form.html.twig') }}
+								{% endif %}
+							</div>
+						</td>
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="9">Aucun utilisateur trouvé</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</main>
 {% endblock %}
