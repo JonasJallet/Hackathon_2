@@ -34,6 +34,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToOne(mappedBy: 'user', cascade: ['persist', 'remove'])]
     private ?Collectivity $collectivity = null;
 
+    #[ORM\OneToOne(mappedBy: 'user', cascade: ['persist', 'remove'])]
+    private ?Customer $information = null;
+
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Customer::class, orphanRemoval: true)]
     private Collection $customers;
 
@@ -155,6 +158,22 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $customer->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getInformation(): ?Customer
+    {
+        return $this->information;
+    }
+
+    public function setInformation(Customer $information): self
+    {
+        // set the owning side of the relation if necessary
+        if ($information->getUser() !== $this) {
+            $information->setUser($this);
+        }
+        $this->information = $information;
 
         return $this;
     }

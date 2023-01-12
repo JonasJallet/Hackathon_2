@@ -1,10 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Vehicle
+{% block title %}Vehicule n°{{ vehicle.id }}
+	| Handi'Loc
 {% endblock %}
 
 {% block body %}
-
 
 	<div class="row justify-content-center p-4">
 		<div class="col-8 card mb-3 p-0">
@@ -37,8 +37,8 @@
 							<td>{{ vehicle.registrationPlate }}</td>
 						</tr>
 						<tr>
-							<th>IsAvailable</th>
-							<td>{{ vehicle.isAvailable ? 'Yes' : 'No' }}</td>
+							<th>Disponible</th>
+							<td>{{ vehicle.isAvailable ? 'Oui' : 'Non' }}</td>
 						</tr>
 					</tbody>
 				</table>
