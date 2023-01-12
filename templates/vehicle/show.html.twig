@@ -4,48 +4,45 @@
 {% endblock %}
 
 {% block body %}
-	<h1>Vehicle</h1>
 
-	<table class="table">
-		<tbody>
-			<tr>
-				<th>Id</th>
-				<td>{{ vehicle.id }}</td>
-			</tr>
-			<tr>
-				<th>Brand</th>
-				<td>{{ vehicle.brand }}</td>
-			</tr>
-			<tr>
-				<th>Model</th>
-				<td>{{ vehicle.model }}</td>
-			</tr>
-			<tr>
-				<th>Mileage</th>
-				<td>{{ vehicle.mileage }}</td>
-			</tr>
-			<tr>
-				<th>Energy</th>
-				<td>{{ vehicle.energy }}</td>
-			</tr>
-			<tr>
-				<th>RegistrationPlate</th>
-				<td>{{ vehicle.registrationPlate }}</td>
-			</tr>
-			<tr>
-				<th>IsAvailable</th>
-				<td>{{ vehicle.isAvailable ? 'Yes' : 'No' }}</td>
-			</tr>
-			<tr>
-				<th>Picture</th>
-				<td>{{ vehicle.picture }}</td>
-			</tr>
-		</tbody>
-	</table>
 
-	<a href="{{ path('app_vehicle_index') }}">back to list</a>
-
-	<a href="{{ path('app_vehicle_edit', {'id': vehicle.id}) }}">edit</a>
-
-	{{ include('vehicle/_delete_form.html.twig') }}
+	<div class="row justify-content-center p-4">
+		<div class="col-8 card mb-3 p-0">
+			<img class="card-img-top" src="{{ vehicle.picture }}" alt="Card image cap">
+			<div class="card-img-overlay">
+				<div class="card-nav d-flex justify-content-end">
+					<h3 class="card-title title-nav-card">
+						{{ vehicle.brand }}
+						-
+						{{ vehicle.model }}</h3>
+					{% if is_granted('ROLE_ADMIN') %}
+						<a href="{{ path('app_vehicle_edit', {'id': vehicle.id}) }}"><img class="d-flex flex-end mx-1" src="{{ asset('build/images/edit.png') }}" alt="" width="35" heigh="35"></a>
+						{{ include('vehicle/_delete_form.html.twig') }}
+					{% endif %}
+				</div>
+			</div>
+			<div class="card-body">
+				<table class="table">
+					<tbody>
+						<tr>
+							<th>Kilomètrage</th>
+							<td>{{ vehicle.mileage }}</td>
+						</tr>
+						<tr>
+							<th>Type de Carburant</th>
+							<td>{{ vehicle.energy }}</td>
+						</tr>
+						<tr>
+							<th>Plaque d'immatriculation</th>
+							<td>{{ vehicle.registrationPlate }}</td>
+						</tr>
+						<tr>
+							<th>IsAvailable</th>
+							<td>{{ vehicle.isAvailable ? 'Yes' : 'No' }}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
 {% endblock %}
