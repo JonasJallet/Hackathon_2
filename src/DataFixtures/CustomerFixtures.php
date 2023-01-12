@@ -13,7 +13,7 @@ class CustomerFixtures extends Fixture implements DependentFixtureInterface
     {
         $customers = [
             [
-                'user' => 'user_1',
+                'user' => '2',
                 'firstname' => 'Timmy',
                 'lastname' => 'Burch',
                 'phone' => 623456589,
@@ -23,7 +23,7 @@ class CustomerFixtures extends Fixture implements DependentFixtureInterface
                 'disability_card' => 137543456,
             ],
             [
-                'user' => 'user_2',
+                'user' => '3',
                 'firstname' => 'Chacha',
                 'lastname' => 'Baila',
                 'phone' => 629646589,
@@ -33,7 +33,7 @@ class CustomerFixtures extends Fixture implements DependentFixtureInterface
                 'disability_card' => 189543456,
             ],
             [
-                'user' => 'user_3',
+                'user' => '4',
                 'firstname' => 'Jeje',
                 'lastname' => 'Dupont',
                 'phone' => 623456589,
@@ -53,6 +53,7 @@ class CustomerFixtures extends Fixture implements DependentFixtureInterface
             $newcustomer->setAddress($customer['address']);
             $newcustomer->setZipcode($customer['zipcode']);
             $newcustomer->setCity($customer['city']);
+            $newcustomer->setUser($this->getReference('user_' . $customer['user']));
             $manager->persist($newcustomer);
             $this->addReference('customer_' . $key, $newcustomer);
         }

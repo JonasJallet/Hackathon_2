@@ -48,7 +48,7 @@ class UserFixtures extends Fixture
             $newUser->setPassword($hash);
             $newUser->setRoles([$user['role']]);
             $manager->persist($newUser);
-            $this->addReference('user_' . $key, $newUser);
+            $this->addReference('user_' . ($key + 1), $newUser);
         }
         $manager->flush();
     }

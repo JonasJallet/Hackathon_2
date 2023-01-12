@@ -4,7 +4,6 @@ namespace App\Entity;
 
 use App\Repository\VehicleRepository;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: VehicleRepository::class)]
 class Vehicle
@@ -14,31 +13,24 @@ class Vehicle
     #[ORM\Column]
     private ?int $id = null;
 
-    #[Assert\NotBlank]
     #[ORM\Column(length: 255)]
     private ?string $brand = null;
 
-    #[Assert\NotBlank]
     #[ORM\Column(length: 255)]
     private ?string $model = null;
 
-    #[Assert\NotBlank]
     #[ORM\Column]
     private ?int $mileage = null;
 
-    #[Assert\NotBlank]
     #[ORM\Column(length: 255)]
     private ?string $energy = null;
 
-    #[Assert\NotBlank]
     #[ORM\Column(length: 255)]
     private ?string $registrationPlate = null;
 
-    #[Assert\NotBlank]
     #[ORM\Column]
     private ?bool $isAvailable = null;
 
-    #[Assert\NotBlank]
     #[ORM\Column(length: 255)]
     private ?string $picture = null;
 
