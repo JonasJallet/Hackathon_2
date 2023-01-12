@@ -4,44 +4,47 @@
 {% endblock %}
 
 {% block body %}
-	<h3>Ma page utilisateur</h3>
-
-	<table class="table">
-		<tbody>
-			<tr>
-				<th>Id</th>
-				<td>{{ customer.id }}</td>
-			</tr>
-			<tr>
-				<th>FirstName</th>
-				<td>{{ customer.firstName }}</td>
-			</tr>
-			<tr>
-				<th>LastName</th>
-				<td>{{ customer.lastName }}</td>
-			</tr>
-			<tr>
-				<th>DisabilityCard</th>
-				<td>{{ customer.disabilityCard }}</td>
-			</tr>
-			<tr>
-				<th>Phone</th>
-				<td>{{ customer.phone }}</td>
-			</tr>
-			<tr>
-				<th>Address</th>
-				<td>{{ customer.address }}</td>
-			</tr>
-			<tr>
-				<th>Zipcode</th>
-				<td>{{ customer.zipcode }}</td>
-			</tr>
-			<tr>
-				<th>City</th>
-				<td>{{ customer.city }}</td>
-			</tr>
-		</tbody>
-	</table>
+	<h3 class="text-center mt-3 mb-3">Profil de
+		{{ customer.lastName }}
+		{{ customer.firstName }}</h3>
+	<div class="container">
+		<table class="table">
+			<tbody>
+				<tr>
+					<th>Id</th>
+					<td>{{ customer.id }}</td>
+				</tr>
+				<tr>
+					<th>FirstName</th>
+					<td>{{ customer.firstName }}</td>
+				</tr>
+				<tr>
+					<th>LastName</th>
+					<td>{{ customer.lastName }}</td>
+				</tr>
+				<tr>
+					<th>DisabilityCard</th>
+					<td>{{ customer.disabilityCard }}</td>
+				</tr>
+				<tr>
+					<th>Phone</th>
+					<td>{{ customer.phone }}</td>
+				</tr>
+				<tr>
+					<th>Address</th>
+					<td>{{ customer.address }}</td>
+				</tr>
+				<tr>
+					<th>Zipcode</th>
+					<td>{{ customer.zipcode }}</td>
+				</tr>
+				<tr>
+					<th>City</th>
+					<td>{{ customer.city }}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
 
 	<a href="{{ path('app_customer_index') }}">back to list</a>
 
