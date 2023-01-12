@@ -42,6 +42,18 @@ class CustomerController extends AbstractController
         ]);
     }
 
+    #[Route('/mypage', name: 'app_customer_profile', methods: ['GET'])]
+    #[IsGranted('ROLE_CUSTOMER')]
+    public function mypage(CustomerRepository $customerRepository = null): Response
+    {
+        $userConnected = $this->container->get('security.token_storage')->getToken()->getUser();
+        $userCustomerId = $userConnected->getInformation()->getId();
+        $customer = $customerRepository->findOneBy(['id' => $userCustomerId]);
+        return $this->render('profile/index.html.twig', [
+            'customer' => $customer,
+        ]);
+    }
+
     #[Route('/{id}', name: 'app_customer_show', methods: ['GET'])]
     public function show(Customer $customer): Response
     {

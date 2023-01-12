@@ -37,7 +37,7 @@ class Customer
     #[ORM\OneToOne(inversedBy: 'customer', cascade: ['persist', 'remove'])]
     private ?Vehicle $vehicle = null;
 
-    #[ORM\ManyToOne(inversedBy: 'customers')]
+    #[ORM\OneToOne(inversedBy: 'information', cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
 
