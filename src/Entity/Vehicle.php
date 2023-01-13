@@ -41,11 +41,6 @@ class Vehicle
     #[ORM\OneToOne(mappedBy: 'vehicle', cascade: ['persist', 'remove'])]
     private ?Customer $customer = null;
 
-    public function __construct()
-    {
-        $this->customer = new ArrayCollection();
-    }
-
     public function getId(): ?int
     {
         return $this->id;

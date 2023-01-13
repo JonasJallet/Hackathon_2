@@ -6,9 +6,9 @@
 
 {% block body %}
 	{% if is_granted('ROLE_ADMIN') %}
-		<h3 class="text-center mt-3 mb-3">Liste des véhicules</h3>
+		<h3 class="text-center mt-2 mb-2">Liste des véhicules</h3>
 	{% else %}
-		<h3 class="text-center mt-3 mb-3">Liste des véhicules disponibles</h3>
+		<h3 class="text-center mt-2 mb-2">Liste des véhicules disponibles</h3>
 	{% endif %}
 
 	{% if is_granted('ROLE_ADMIN') %}
@@ -48,7 +48,7 @@
 						</tr>
 					{% else %}
 						<tr>
-							<td colspan="9">Aucun véhicule disponible</td>
+							<td colspan="9">Désolé, il n'y a aucun véhicule disponible pour le moment</td>
 						</tr>
 					{% endfor %}
 				</tbody>
