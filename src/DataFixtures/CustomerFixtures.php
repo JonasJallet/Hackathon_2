@@ -21,6 +21,7 @@ class CustomerFixtures extends Fixture implements DependentFixtureInterface
                 'zipcode' => 69150,
                 'city' => 'Décines-Charpieu',
                 'disability_card' => 137543456,
+                'picture' => 'https://pbs.twimg.com/media/B0BGJKACEAACXJ5.jpg',
             ],
             [
                 'user' => '3',
@@ -31,6 +32,8 @@ class CustomerFixtures extends Fixture implements DependentFixtureInterface
                 'zipcode' => 69320,
                 'city' => 'Feyzin',
                 'disability_card' => 189543456,
+                'picture' => 'https://pbs.twimg.com/media/B0BGJKACEAACXJ5.jpg',
+
             ],
             [
                 'user' => '4',
@@ -41,6 +44,7 @@ class CustomerFixtures extends Fixture implements DependentFixtureInterface
                 'zipcode' => 69003,
                 'city' => 'Lyon',
                 'disability_card' => 156745685,
+                'picture' => 'https://pbs.twimg.com/media/B0BGJKACEAACXJ5.jpg',
             ],
         ];
 
@@ -50,6 +54,7 @@ class CustomerFixtures extends Fixture implements DependentFixtureInterface
             $newcustomer->setLastName($customer['lastname']);
             $newcustomer->setDisabilityCard($customer['disability_card']);
             $newcustomer->setPhone($customer['phone']);
+            $newcustomer->setPicture($customer['picture']);
             $newcustomer->setAddress($customer['address']);
             $newcustomer->setZipcode($customer['zipcode']);
             $newcustomer->setCity($customer['city']);

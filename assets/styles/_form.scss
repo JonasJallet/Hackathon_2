@@ -6,15 +6,6 @@
 .mainSection {
     display: flex;
     justify-content: center;
-
-    a {
-        color: red;
-
-        &:hover {
-            color: red;
-            cursor: pointer;
-        }
-    }
 }
 
 .form-label {
@@ -25,4 +16,8 @@
 .button-save {
     width: 200px;
     margin-top: 40px;
+}
+
+button.button-panel-admin {
+    width: 200px;
 }

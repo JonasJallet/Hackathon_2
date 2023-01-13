@@ -22,25 +22,28 @@
 				</div>
 			</div>
 			<div class="card-body">
-				<table class="table">
+				<table class="table m-0">
 					<tbody>
 						<tr>
-							<th>Kilomètrage</th>
-							<td>{{ vehicle.mileage }}</td>
+							<th class="border-0">Kilomètrage</th>
+							<td class="border-0">{{ vehicle.mileage }}</td>
 						</tr>
 						<tr>
-							<th>Type de Carburant</th>
-							<td>{{ vehicle.energy }}</td>
+							<th class="border-0">Type de Carburant</th>
+							<td class="border-0">{{ vehicle.energy }}</td>
 						</tr>
 						<tr>
-							<th>Plaque d'immatriculation</th>
-							<td>{{ vehicle.registrationPlate }}</td>
+							<th class="border-0">Plaque d'immatriculation</th>
+							<td class="border-0">{{ vehicle.registrationPlate }}</td>
 						</tr>
-						<tr>
-							<th>Disponible</th>
-							<td>{{ vehicle.isAvailable ? 'Oui' : 'Non' }}</td>
-						</tr>
+						{% if is_granted('ROLE_ADMIN') %}
+							<tr>
+								<th class="border-0">Disponible</th>
+								<td class="border-0">{{ vehicle.isAvailable ? 'Oui' : 'Non' }}</td>
+							</tr>
+						{% endif %}
 					</tbody>
+<<<<<<< HEAD
 				</table>
 			</div>
 		</div>
@@ -51,3 +54,10 @@
 		</a>
 	</div>
 {% endblock %}
+=======
+				</tbody>
+			</tr>
+		</tbody>
+	</table>
+</div></div></div>{% endblock %}
+>>>>>>> f095c5834dc0c2a3ead91ab21712a79171958fb9

@@ -1,10 +1,10 @@
 $grey: #474747;
-$lyon: #CE2B1E;
+$lyon: #d63031;
 
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 @import "~bootstrap/scss/bootstrap";
-//start coding by removing this file and adding yours ;)
+
 @import "navBar";
 @import "home";
 @import "form";
@@ -41,7 +41,8 @@ h3 {
 }
 
 .img-vehicle {
-    width: 200px;
+    width: 220px;
+    height: 120px;
     object-fit: cover;
 }
 
@@ -50,6 +51,10 @@ h3 {
     height: 45px;
     fill: $grey;
     padding: 8px;
+}
+
+.logo-red {
+    fill: red !important;
 }
 
 .a-logo-menu {
@@ -73,5 +78,16 @@ h3 {
 
 .button-add-list {
     margin-bottom: 10px;
-    margin-left: 10px;
+    margin-left: 30px;
+}
+
+.card-body-text {
+    padding: 0px;
+}
+
+.avatar {
+    width: 200px;
+    height: 200px;
+
+    border-radius: 120px;
 }

@@ -1,7 +1,13 @@
 .card-img-top {
     max-height: 500px;
+    object-fit: contain;
 }
 
 .title-nav-card {
     margin-right: 20px;
+}
+
+.card-img-top-user {
+    height: 280px;
+    object-fit: contain;
 }
