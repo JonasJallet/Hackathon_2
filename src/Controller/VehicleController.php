@@ -100,7 +100,6 @@ class VehicleController extends AbstractController
         return $this->redirectToRoute('app_vehicle_index');
     }
 
-
     #[IsGranted('ROLE_CUSTOMER')]
     #[Route("/rent/{id}", name: "vehicle_rent")]
     public function rentVehicle(Vehicle $vehicle, EntityManagerInterface $bdd)

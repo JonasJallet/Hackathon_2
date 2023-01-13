@@ -26,12 +26,10 @@
 					<tbody>
 						<tr>
 							<th class="border-0">Kilomètrage</th>
-							<td class="border-0">{{ vehicle.mileage }}
-								kms au compteur</td>
+							<td class="border-0">{{ vehicle.mileage }}</td>
 						</tr>
 						<tr>
-							<th class="border-0">Type de Carburant
-							</th>
+							<th class="border-0">Type de Carburant</th>
 							<td class="border-0">{{ vehicle.energy }}</td>
 						</tr>
 						<tr>
@@ -48,9 +46,10 @@
 				</table>
 			</div>
 		</div>
-		<div class="d-flex justify-content-center">
-			<a href="{{ path('vehicle_rent', {'id': vehicle.id}) }}">
-				<button class="button-save btn btn-success">{{ button_label|default('Réserver') }}</button>
-			</a>
-		</div>
-	{% endblock %}
+	</div>
+	<div class="d-flex justify-content-center">
+		<a href="{{ path('vehicle_rent', {'id': vehicle.id}) }}">
+			<button class="button-save btn btn-success">{{ button_label|default('Réserver') }}</button>
+		</a>
+	</div>
+{% endblock %}
