@@ -26,7 +26,22 @@
 						{{ customer.phone }}
 					</h5>
 					<h5 class="card-text lead">Carte d'invalidité n°
-						{{ customer.disabilityCard }}</h5>
+						{{ customer.disabilityCard }}
+					</h5>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="row justify-content-center p-4">
+		<div class="col-6 card mb-3 p-0">
+			<img class="card-img-top" src="{{ customer.vehicle.picture }}" alt="Card image cap">
+			<div class="card-img-overlay">
+				<div class="card-nav d-flex justify-content-end">
+					<h3 class="card-title title-nav-card">
+						{{ customer.vehicle.brand }}
+						-
+						{{ customer.vehicle.model }}</h3>
 				</div>
 			</div>
 		</div>

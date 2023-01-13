@@ -43,21 +43,13 @@
 							</tr>
 						{% endif %}
 					</tbody>
-<<<<<<< HEAD
 				</table>
 			</div>
 		</div>
-	</div>
-	<div class="d-flex justify-content-center">
-		<a href="{{ path('vehicle_rent', {'id': vehicle.id}) }}">
-			<button class="button-save btn btn-success">{{ button_label|default('Réserver') }}</button>
-		</a>
+		<div class="d-flex justify-content-center">
+			<a href="{{ path('vehicle_rent', {'id': vehicle.id}) }}">
+				<button class="button-save btn btn-success m-0">{{ button_label|default('Réserver') }}</button>
+			</a>
+		</div>
 	</div>
 {% endblock %}
-=======
-				</tbody>
-			</tr>
-		</tbody>
-	</table>
-</div></div></div>{% endblock %}
->>>>>>> f095c5834dc0c2a3ead91ab21712a79171958fb9
