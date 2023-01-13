@@ -2,8 +2,9 @@
 
 namespace App\Entity;
 
-use App\Repository\VehicleRepository;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\VehicleRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 
 #[ORM\Entity(repositoryClass: VehicleRepository::class)]
 class Vehicle
@@ -39,6 +40,11 @@ class Vehicle
 
     #[ORM\OneToOne(mappedBy: 'vehicle', cascade: ['persist', 'remove'])]
     private ?Customer $customer = null;
+
+    public function __construct()
+    {
+        $this->customer = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {

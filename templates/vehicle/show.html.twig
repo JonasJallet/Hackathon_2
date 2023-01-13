@@ -43,8 +43,13 @@
 							</tr>
 						{% endif %}
 					</tbody>
-				</tbody>
-			</tr>
-		</tbody>
-	</table>
-</div></div></div>{% endblock %}
+				</table>
+			</div>
+		</div>
+		<div class="d-flex justify-content-center">
+			<a href="{{ path('vehicle_rent', {'id': vehicle.id}) }}">
+				<button class="button-save btn btn-success m-0">{{ button_label|default('Réserver') }}</button>
+			</a>
+		</div>
+	</div>
+{% endblock %}
