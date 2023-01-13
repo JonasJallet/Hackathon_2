@@ -14,8 +14,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Component\HttpKernel\EventListener\AddRequestFormatsListener;
 
-#[Route('/vehicule')]
+#[Route('/vehicle')]
 class VehicleController extends AbstractController
 {
     #[Route('/', name: 'app_vehicle_index', methods: ['GET'])]
@@ -99,32 +100,52 @@ class VehicleController extends AbstractController
         return $this->redirectToRoute('app_vehicle_index');
     }
 
-    // #[Route('/location/{id}', name: 'app_vehicle_booking', requirements: ['id' => '\d+'])]
-    // public function booking(VehicleRepository $vehicleRepository, CustomerRepository $customerRepository, EntityManagerInterface $bdd): Response
-    // {
-    //     $vehicle = new Vehicle();
-    //     $customer = new Customer();
 
-    //     if ($vehicle->isIsAvailable() == true) {
-    //         $vehicle->setIsAvailable(false);
-    //         $vehicle->setCustomer($customerRepository->getId());
-    //         $vehicleRepository->save($vehicle, true);
-    //         $customer->setVehicle($vehicle->getId());
-    //         $customerRepository->save($customer, true);
-    //         return $this->redirectToRoute('app_vehicle_index');
-    //     } else {
-    //         if ($vehicle->getId() == $customer->getVehicle()) {
-    //             $vehicle->setIsAvailable(true);
-    //             $vehicle->setCustomer(null);
-    //             $vehicleRepository->save($vehicle, true);
-    //             $customer->setVehicle(null);
-    //             $customerRepository->save($customer, true);
-    //             return $this->redirectToRoute('app_vehicle_index');
-    //         } else {
-    //             return $this->redirectToRoute('app_vehicle_index');
-    //         }
-    //     }
+    #[IsGranted('ROLE_CUSTOMER')]
+    #[Route("/rent/{id}", name: "vehicle_rent")]
+    public function rentVehicle(Vehicle $vehicle, EntityManagerInterface $bdd)
+    {
+        $customer = $this->getUser()->getInformation();
 
-    //     return $this->redirectToRoute('app_vehicle_index');
-    // }
+        if ($vehicle->isIsAvailable()) {
+            $vehicle->setIsAvailable(false);
+            $vehicle->setCustomer($customer);
+            $customer->setVehicle($vehicle);
+            $bdd->persist($vehicle);
+            $bdd->persist($customer);
+            $bdd->flush();
+
+            $this->addFlash('success', 'Merci de nous avoir fait confiance !');
+
+            return $this->redirectToRoute('app_customer_profile');
+        }
+        return $this->render('vehicle/index.html.twig', [
+            'error' => 'Ce véhicule n\'est pas disponible'
+        ]);
+    }
+
+
+    #[IsGranted('ROLE_CUSTOMER')]
+    #[Route("/return/{id}", name: "return_vehicle")]
+    public function returnVehicle(Vehicle $vehicle, EntityManagerInterface $bdd)
+    {
+        $customer = $this->getUser()->getInformation();
+
+        if (!$vehicle->isIsAvailable()) {
+            $vehicle->setIsAvailable(true);
+            $vehicle->setCustomer(null);
+            $customer->setVehicle(null);
+
+            $bdd->persist($vehicle);
+            $bdd->persist($customer);
+            $bdd->flush();
+
+            $this->addFlash('success', 'Merci de nous avoir fait confiance !');
+
+            return $this->redirectToRoute('app_customer_profile', [], Response::HTTP_SEE_OTHER);
+        } else {
+            $this->addFlash('error', 'Désolé, ce véhicule a déja été rendu');
+            return $this->redirectToRoute('app_vehicle_show', [], Response::HTTP_SEE_OTHER);
+        }
+    }
 }
