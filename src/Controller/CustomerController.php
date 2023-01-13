@@ -49,6 +49,7 @@ class CustomerController extends AbstractController
         $userConnected = $this->container->get('security.token_storage')->getToken()->getUser();
         $userCustomerId = $userConnected->getInformation()->getId();
         $customer = $customerRepository->findOneBy(['id' => $userCustomerId]);
+
         return $this->render('profile/index.html.twig', [
             'customer' => $customer,
         ]);
