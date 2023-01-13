@@ -11,7 +11,7 @@
 			<img class="card-img-top" src="{{ vehicle.picture }}" alt="Card image cap">
 			<div class="card-img-overlay">
 				<div class="card-nav d-flex justify-content-end">
-					<h3 class="card-title title-nav-card">
+					<h3 class="card-title title-nav-card title-show">
 						{{ vehicle.brand }}
 						-
 						{{ vehicle.model }}</h3>
@@ -46,10 +46,16 @@
 				</table>
 			</div>
 		</div>
-	</div>
-	<div class="d-flex justify-content-center">
-		<a href="{{ path('vehicle_rent', {'id': vehicle.id}) }}">
-			<button class="button-save btn btn-success">{{ button_label|default('Réserver') }}</button>
-		</a>
+		{% if app.user %}
+			{% if is_granted('ROLE_ADMIN') %}
+				{% else %}
+					<div class="d-flex justify-content-center">
+						<a href="{{ path('vehicle_rent', {'id': vehicle.id}) }}">
+							<button class="button-save btn btn-success m-0">{{ button_label|default('Réserver') }}</button>
+						</a>
+					</div>
+			{% endif %}
+		{% endif %}
+
 	</div>
 {% endblock %}
